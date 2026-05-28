@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, user-scalable=no">
+  <meta name="theme-color" content="#1a73e8">
+  <meta name="description" content="Personal loan & payment tracking app">
+
+  <!-- PWA -->
+  <link rel="manifest" href="/manifest.json">
+  <link rel="icon" type="image/png" sizes="192x192" href="/icons/icon-192.png">
+  <link rel="apple-touch-icon" href="/icons/icon-192.png">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <meta name="apple-mobile-web-app-title" content="Loan Tracker">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="/css/app.css">
+
+  <title>Loan Tracker</title>
+
+  <!-- Inline critical styles for instant first paint -->
+  <style>
+    body { margin: 0; font-family: 'Inter', system-ui, sans-serif; background: #f0f2f5; }
+    .initial-loader {
+      position: fixed; inset: 0; z-index: 9999;
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      background: #f0f2f5; gap: 16px;
+    }
+    .initial-loader .spinner {
+      width: 36px; height: 36px;
+      border: 3px solid #e8eaed; border-top-color: #1a73e8;
+      border-radius: 50%; animation: spin 0.8s linear infinite;
+    }
+    .initial-loader p { color: #5f6368; font-size: 14px; margin: 0; }
+    @keyframes spin { to { transform: rotate(360deg); } }
+  </style>
+</head>
+<body>
+  <!-- Splash loader (hidden once app renders) -->
+  <div class="initial-loader" id="initial-loader">
+    <div class="spinner"></div>
+    <p>Loading...</p>
+  </div>
+
+  <!-- App shell -->
+  <div id="app" class="app-shell"></div>
+
+  <!-- Toast container -->
+  <div id="toast-container" class="toast-container"></div>
+
+  <!-- Bottom sheet overlay -->
+  <div id="overlay" class="overlay" aria-hidden="true"></div>
+
+  <!-- Bottom sheet -->
+  <div id="bottom-sheet" class="bottom-sheet" aria-hidden="true">
+    <div class="bottom-sheet-handle-area">
+      <div class="bottom-sheet-handle"></div>
+    </div>
+    <div id="bottom-sheet-content" class="bottom-sheet-body"></div>
+  </div>
+
+  <!-- Confirm dialog -->
+  <div id="confirm-dialog" class="confirm-overlay" aria-hidden="true">
+    <div class="confirm-dialog">
+      <p id="confirm-message" class="confirm-text"></p>
+      <div class="confirm-actions">
+        <button id="confirm-cancel" class="btn btn-ghost" type="button">Cancel</button>
+        <button id="confirm-ok" class="btn btn-danger" type="button">Delete</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script type="module" src="/js/app.js"></script>
+</body>
+</html>
